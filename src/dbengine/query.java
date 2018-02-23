@@ -11,27 +11,42 @@ public class query {
 		
 		String qry = "select city,winner,player_match,avg(win_by_wickets),min(win_by_runs) from ipl.csv where season > 2016 and city= 'Bangalore' GROUP by team1 order by win_by_runs";
 		String[] words = getWords(qry);
+		System.out.println("Splitting Query into words :");
 		for(String word : words)
 			System.out.println(word);
 		
+		System.out.println();
+		
 		ArrayList<String> Filename = getFilename(words);
 		System.out.println("Filename: "+Filename);
+		System.out.println();
 		System.out.println("Base Part: "+getPart(qry,"base"));
+		System.out.println();
 		System.out.println("Filter Part: "+getPart(qry, "filter"));
+		System.out.println();
 		ArrayList<String> Condition = getCondition(words);
-		//System.out.println(Condition.size());
+		System.out.println("Conditions :");
 		for(String x : Condition)
 			System.out.println(x);
+		System.out.println();
 		ArrayList<String> logop = getLogop(words);
-		//System.out.println(logop.size());
+		System.out.println("Logical Operators :");
 		for(String x : logop)
 			System.out.println(x);
+		System.out.println();
+		System.out.println("Selected Fields :");
 		String[] keys = getSelected(words);
 		for(String key : keys)
 			System.out.println(key);
+		System.out.println();
+		System.out.println("Order by :");
 		
 		System.out.println(getBy(words, "order"));
+		System.out.println();
+		System.out.println("Group by :");
 		System.out.println(getBy(words, "group"));
+		System.out.println();
+		System.out.println("Aggregate functions :");
 		
 		ArrayList<String> aggFunc = getAggfunc(keys);
 		for(String x : aggFunc)
